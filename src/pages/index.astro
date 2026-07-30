@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { icons } from '../data/icons.js';
+import {
+  profile,
+  experience,
+  education,
+  skills,
+  projects,
+  interests,
+} from '../data/portfolio.js';
+---
+
+<Layout>
+  <Sidebar slot="nav" />
+
+  <!-- About / intro -->
+  <section id="about" class="section">
+    <div class="intro">
+      <p class="tag">
+        <span class="dot">$</span> whoami
+      </p>
+      <h1>
+        {profile.name.split(' ')[0]} {profile.name.split(' ')[1]}
+        <span class="last">{profile.name.split(' ').slice(2).join(' ')}</span>
+      </h1>
+      <p class="tag">
+        {profile.role}<span class="dot">·</span>{profile.location}
+      </p>
+      <p class="summary">{profile.summary}</p>
+      <a class="cta" href={`mailto:${profile.email}`}>
+        <span set:html={icons.mail}></span> Get in touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section">
+    <header class="section-head">
+      <span class="num">01.</span>
+      <h2>Experience</h2>
+      <span class="rule"></span>
+    </header>
+    <div class="timeline">
+      {experience.map((job) => (
+        <article class="entry">
+          <div class="entry-head">
+            <div>
+              <div class="entry-title">{job.role}</div>
+              <div class="entry-company">{job.company} · {job.location}</div>
+            </div>
+            <div class="entry-period">{job.period}</div>
+          </div>
+          <ul>
+            {job.highlights.map((h) => <li>{h}</li>)}
+          </ul>
+          <div class="tags">
+            {job.stack.map((t) => <span class="tag-chip">{t}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="section">
+    <header class="section-head">
+      <span class="num">02.</span>
+      <h2>Education</h2>
+      <span class="rule"></span>
+    </header>
+    {education.map((ed) => (
+      <div class="education-item">
+        <div>
+          <div class="school">{ed.school}</div>
+          <div class="degree">{ed.degree} · {ed.location}</div>
+        </div>
+        <div class="period">{ed.period}</div>
+      </div>
+    ))}
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section">
+    <header class="section-head">
+      <span class="num">03.</span>
+      <h2>Skills</h2>
+      <span class="rule"></span>
+    </header>
+    <div class="skill-grid">
+      {skills.groups.map((g) => (
+        <div class="skill-group">
+          <h3>{g.title}</h3>
+          <ul>
+            {g.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <header class="section-head">
+      <span class="num">04.</span>
+      <h2>Projects</h2>
+      <span class="rule"></span>
+    </header>
+
+    <p class="subhead">work projects</p>
+    <p class="project-note">
+      Projects I contributed to as an employee. The repos are private — I can only
+      link to the live sites.
+    </p>
+    <div class="project-grid">
+      {projects.work.map((p) => (
+        <article class="project">
+          <h4>{p.name}</h4>
+          <p>{p.description}</p>
+          <a class="project-link" href={p.url} target="_blank" rel="noopener noreferrer">
+            Visit site <span set:html={icons.external}></span>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <p class="subhead" style="margin-top: 2.5rem;">personal projects</p>
+    <p class="project-note">
+      Most of my personal projects aren't deployed (cloud hosting ain't cheap) —
+      the source for all of them is on GitHub.
+    </p>
+    <div class="project-grid">
+      {projects.personal.map((p) => (
+        <article class="project">
+          <h4>{p.name}</h4>
+          <p>{p.description}</p>
+          <a class="project-link" href={p.url} target="_blank" rel="noopener noreferrer">
+            View source <span set:html={icons.external}></span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Interests -->
+  <section id="interests" class="section">
+    <header class="section-head">
+      <span class="num">05.</span>
+      <h2>Interests</h2>
+      <span class="rule"></span>
+    </header>
+    <div class="interests">
+      <p>{interests}</p>
+    </div>
+  </section>
+</Layout>
