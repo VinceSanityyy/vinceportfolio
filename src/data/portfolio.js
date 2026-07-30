@@ -183,6 +183,13 @@ export const projects = {
   ],
   work: [
     {
+      name: 'Spondise Marketplace',
+      description:
+        'A two-sided marketplace linking Sponsors (e.g. businesses) with Creators (e.g. YouTube channels), letting creators pick sponsor listings and integrate promo material into their content. I owned the back-end: API endpoints, query optimisation, and refactoring.',
+      url: 'https://spondise.com',
+      tags: ['Laravel', 'PHP', 'MySQL', 'REST', 'AWS'],
+    },
+    {
       name: 'Propnex',
       description:
         'Singapore-based real-estate site. I worked mostly on the back-end and deployment, using Yii 1 (a PHP framework) + jQuery.',
